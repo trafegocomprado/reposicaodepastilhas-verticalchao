@@ -1,0 +1,11 @@
+{
+  "name": "reposicaodepastilhas-verticalchao",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "validate": "node scripts/validate-site.mjs && node scripts/check-links.mjs",
+    "check": "npm run build && npm run validate"
+  }
+}

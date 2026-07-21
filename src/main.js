@@ -1,16 +1,6 @@
 const commercialPhone = "5531996848477";
 
 const header = document.querySelector("[data-site-header]");
-const menuToggle = document.querySelector("[data-menu-toggle]");
-const mainNav = document.querySelector("[data-main-nav]");
-
-function setMenu(open) {
-  header?.classList.toggle("is-open", open);
-  document.body.classList.toggle("menu-open", open);
-  menuToggle?.setAttribute("aria-expanded", String(open));
-  const label = menuToggle?.querySelector(".sr-only");
-  if (label) label.textContent = open ? "Fechar menu" : "Abrir menu";
-}
 
 function track(event, properties) {
   window.dataLayer = window.dataLayer || [];
@@ -20,21 +10,6 @@ function track(event, properties) {
 function updateHeader() {
   header?.classList.toggle("is-scrolled", window.scrollY > 20);
 }
-
-menuToggle?.addEventListener("click", () => {
-  setMenu(menuToggle.getAttribute("aria-expanded") !== "true");
-});
-
-mainNav?.addEventListener("click", (event) => {
-  if (event.target.closest("a")) setMenu(false);
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && menuToggle?.getAttribute("aria-expanded") === "true") {
-    setMenu(false);
-    menuToggle.focus();
-  }
-});
 
 window.addEventListener("scroll", updateHeader, { passive: true });
 updateHeader();

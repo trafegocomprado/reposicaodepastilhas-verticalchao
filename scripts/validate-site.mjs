@@ -66,6 +66,15 @@ if (!html.includes('rel="icon"')) failures.push("Missing favicon link");
 if (!html.includes('application/ld+json')) failures.push("Missing JSON-LD");
 if ((html.match(/<h1\b/g) ?? []).length !== 1) failures.push("Page must contain exactly one h1");
 
+for (const menuArtifact of ["data-menu-toggle", "menu-toggle", "menu-open", "is-open"]) {
+  if (source.includes(menuArtifact)) failures.push(`Mobile menu artifact remains: ${menuArtifact}`);
+}
+
+const mobileGallery = css.slice(css.lastIndexOf("@media (max-width: 680px)"));
+if (!/\.gallery figure\s*\{[\s\S]*?min-height:\s*0;[\s\S]*?aspect-ratio:\s*4\s*\/\s*3/.test(mobileGallery)) {
+  failures.push("Mobile gallery cards must use a compact 4:3 aspect ratio without a minimum height");
+}
+
 const schemaMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
 if (schemaMatch) {
   try {

@@ -199,45 +199,53 @@
         <div class="quote__content">
           <p class="eyebrow">Orçamento de reposição de pastilhas</p>
           <h2 id="orcamento-title">Conte o que você observou na fachada.</h2>
-          <p>Preencha os dados principais. Ao enviar, abrimos o WhatsApp com uma mensagem organizada para o atendimento comercial. Nenhum dado fica armazenado neste site.</p>
+          <p>Envie sua solicitação ao atendimento comercial. Nossa equipe responderá pelo e-mail que você informar.</p>
           <ul class="contact-list" aria-label="Contatos diretos">
             <li><a href="tel:+5531996848477" data-track-cta data-track-location="quote">(31) 99684-8477</a></li>
             <li><a href="mailto:verticalchao@gmail.com">verticalchao@gmail.com</a></li>
           </ul>
         </div>
 
-        <form class="quote-form" data-whatsapp-form novalidate>
+        <form class="quote-form" data-contact-form data-form-name="reposicao_pastilhas_orcamento" method="post" action="#orcamento" novalidate>
           <div class="field">
             <label for="nome">Seu nome</label>
-            <input id="nome" name="nome" autocomplete="name" aria-describedby="nome-error" required>
+            <input id="nome" name="nome" autocomplete="name" minlength="2" maxlength="120" aria-describedby="nome-error" required>
             <p class="field-error" id="nome-error" data-error-for="nome"></p>
           </div>
           <div class="field">
-            <label for="telefone">Seu telefone</label>
-            <input id="telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="telefone-error" required>
+            <label for="telefone">Seu telefone <span>(opcional)</span></label>
+            <input id="telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" aria-describedby="telefone-error">
             <p class="field-error" id="telefone-error" data-error-for="telefone"></p>
           </div>
           <div class="field">
-            <label for="email">E-mail <span>(opcional)</span></label>
-            <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error">
+            <label for="email">Seu e-mail para resposta</label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="email-error" required>
             <p class="field-error" id="email-error" data-error-for="email"></p>
           </div>
           <div class="field">
-            <label for="assunto">Assunto</label>
-            <select id="assunto" name="assunto" aria-describedby="assunto-error" required>
+            <label for="servico">Assunto</label>
+            <select id="servico" name="servico" aria-describedby="servico-error" required>
               <option value="">Selecione</option>
               <option>Solicitar orçamento</option>
               <option>Agendar vistoria</option>
               <option>Tirar uma dúvida</option>
             </select>
-            <p class="field-error" id="assunto-error" data-error-for="assunto"></p>
+            <p class="field-error" id="servico-error" data-error-for="servico"></p>
           </div>
           <div class="field">
             <label for="mensagem">Mensagem</label>
-            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Ex.: há pastilhas soltas na lateral do edifício e sinais de infiltração."></textarea>
+            <textarea id="mensagem" name="mensagem" rows="5" maxlength="5000" aria-describedby="mensagem-error" placeholder="Ex.: há pastilhas soltas na lateral do edifício e sinais de infiltração." required></textarea>
+            <p class="field-error" id="mensagem-error" data-error-for="mensagem"></p>
           </div>
-          <button class="button" type="submit">Enviar pelo WhatsApp</button>
+          <div class="contact-honeypot" aria-hidden="true">
+            <label for="website">Seu site</label>
+            <input id="website" name="website" type="text" autocomplete="off" tabindex="-1" maxlength="200">
+          </div>
+          <div class="contact-verification" data-turnstile></div>
+          <button class="button" type="submit" disabled>Enviar solicitação</button>
           <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+          <p class="contact-fallback" data-contact-fallback>Se preferir, escreva para <a href="mailto:verticalchao@gmail.com">verticalchao@gmail.com</a>.</p>
+          <noscript><p>Ative o JavaScript para usar o formulário ou envie sua mensagem para <a href="mailto:verticalchao@gmail.com">verticalchao@gmail.com</a>.</p></noscript>
         </form>
       </section>
     </main>
@@ -250,7 +258,7 @@
         </a>
         <p>Av. Deputado Ulisses Guimarães, 385, Bairro Felixlândia, Justinópolis – MG</p>
         <p>CNPJ: 22.195.936/0001.58</p>
-        <p>Responsável Técnico: Ademar R. da Silva, CFT/BR: 141201165-5</p>
+        <p>Responsável Técnico: Ademar R. da Silva, Registro: 141201165-5</p>
       </div>
       <div>
         <h2>Telefones</h2>
@@ -276,6 +284,8 @@
       <span>Atendimento</span>
     </a>
 
+    <script src="./contact-config.js" defer></script>
+    <script src="./contact-form.js" defer></script>
     <script src="./main.js" type="module"></script>
   </body>
 </html>

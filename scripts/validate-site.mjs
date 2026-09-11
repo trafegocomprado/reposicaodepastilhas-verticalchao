@@ -12,6 +12,8 @@ const read = (path) => {
 const html = read("src/index.html");
 const css = read("src/styles.css");
 const js = read("src/main.js");
+const contactJs = read("src/contact-form.js");
+read("src/contact-config.js");
 const source = `${html}\n${css}\n${js}`;
 
 const requiredFiles = [
@@ -34,7 +36,7 @@ const requiredHtml = [
   "https://api.whatsapp.com/send?phone=5531996848477&text=Ol%C3%A1,%20preciso%20de%20um%20atendimento!",
   "verticalchao@gmail.com",
   "HomeAndConstructionBusiness",
-  "data-whatsapp-form",
+  "data-contact-form",
   "GTM-M7GS29F",
   "G-L2NNH9T18X",
   "AW-956995439"
@@ -56,8 +58,8 @@ if (count("GTM-M7GS29F") !== 2) failures.push("GTM container must occur exactly 
 if (count("gtag('config', 'G-L2NNH9T18X')") !== 1) failures.push("GA4 must be configured exactly once");
 if (count("gtag('config', 'AW-956995439')") !== 1) failures.push("Google Ads must be configured exactly once");
 if (!js.includes('track("cta_clicked"')) failures.push("Missing CTA tracking event");
-if (!js.includes('track("form_submitted"')) failures.push("Missing form tracking event");
-if (!js.includes('form_name: "reposicao_pastilhas_orcamento"')) failures.push("Missing tracking form name");
+if (!contactJs.includes("event: 'form_submitted'")) failures.push("Missing confirmed form tracking event");
+if (!html.includes('data-form-name="reposicao_pastilhas_orcamento"')) failures.push("Missing tracking form name");
 if (!css.toLowerCase().includes("--red: #e8333b")) failures.push("Missing red brand token");
 if (!css.toLowerCase().includes("--ink: #14171f")) failures.push("Missing graphite brand token");
 if (!css.toLowerCase().includes("--whatsapp: #25d366")) failures.push("Missing WhatsApp token");

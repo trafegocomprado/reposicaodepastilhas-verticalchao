@@ -181,6 +181,13 @@ section[id], .hero[id] { scroll-margin-top: calc(var(--header-height) + 18px); }
 .field-error { min-height: 1.3em; margin: 5px 0 0; color: #9f3216; font-size: .86rem; font-weight: 800; }
 .form-status { min-height: 1.4em; margin: 10px 0 0; color: var(--muted); font-size: .88rem; }
 .quote-form .button { width: 100%; margin-top: 6px; }
+.contact-honeypot { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.contact-verification { margin: 16px 0; min-height: 0; }
+.quote-form button:disabled { cursor: not-allowed; opacity: .6; transform: none; box-shadow: none; }
+.quote-form .form-status[data-state="error"] { color: #8b2c18; }
+.quote-form .form-status[data-state="success"] { color: #235235; }
+.quote-form .contact-fallback { margin: 12px 0 0; font-size: .9rem; overflow-wrap: anywhere; }
+.contact-fallback a { color: inherit; text-decoration: underline; }
 
 .site-footer { display: grid; grid-template-columns: 1.3fr .75fr .65fr; gap: clamp(26px,5vw,70px); padding: clamp(50px,7vw,86px) clamp(18px,5vw,72px); color: #fff; background: var(--ink); }
 .site-footer h2 { margin: 0 0 14px; font-family: var(--font-display); font-size: 1.35rem; }

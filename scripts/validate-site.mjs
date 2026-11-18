@@ -38,8 +38,7 @@ const requiredHtml = [
   "HomeAndConstructionBusiness",
   "data-contact-form",
   "GTM-M7GS29F",
-  "G-L2NNH9T18X",
-  "AW-956995439"
+  "G-L2NNH9T18X"
 ];
 
 for (const value of requiredHtml) {
@@ -56,7 +55,7 @@ for (const value of [removedLocal, removedInternational, removedCard, "Contact F
 const count = (value, text = html) => text.split(value).length - 1;
 if (count("GTM-M7GS29F") !== 2) failures.push("GTM container must occur exactly twice: script and noscript");
 if (count("gtag('config', 'G-L2NNH9T18X')") !== 1) failures.push("GA4 must be configured exactly once");
-if (count("gtag('config', 'AW-956995439')") !== 1) failures.push("Google Ads must be configured exactly once");
+if (/gtag\s*\(\s*['"]config['"]\s*,\s*['"]AW-956995439['"]/.test(html)) failures.push("Google Ads must be configured only through GTM");
 if (!js.includes('track("cta_clicked"')) failures.push("Missing CTA tracking event");
 if (!contactJs.includes("event: 'form_submitted'")) failures.push("Missing confirmed form tracking event");
 if (!html.includes('data-form-name="reposicao_pastilhas_orcamento"')) failures.push("Missing tracking form name");
